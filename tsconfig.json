@@ -19,7 +19,6 @@
     "typeRoots": [
       "./node_modules/@types"
     ],
-    "allowJs": true,
     "declaration": true
   },
   "include": [
