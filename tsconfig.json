@@ -20,7 +20,7 @@
       "./node_modules/@types"
     ],
     "allowJs": true,
-    "isolatedModules": true
+    "declaration": true
   },
   "include": [
     "src"
