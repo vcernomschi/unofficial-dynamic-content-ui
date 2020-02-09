@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.2.3"></a>
+## [0.2.3](https://github.com/techiedarren/unofficial-dynamic-content-ui/compare/v0.2.2...v0.2.3) (2020-02-09)
+
+
+### Bug Fixes
+
+* disallow js ([2b73074](https://github.com/techiedarren/unofficial-dynamic-content-ui/commit/2b73074))
+* output declaration files ([86849bf](https://github.com/techiedarren/unofficial-dynamic-content-ui/commit/86849bf))
+
+
+
 <a name="0.2.2"></a>
 ## [0.2.2](https://github.com/techiedarren/unofficial-dynamic-content-ui/compare/v0.2.1...v0.2.2) (2020-02-09)
 
