@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.3.2"></a>
+## [0.3.2](https://github.com/techiedarren/unofficial-dynamic-content-ui/compare/v0.3.1...v0.3.2) (2020-09-02)
+
+
+### Bug Fixes
+
+* emit dist build ([3701f7c](https://github.com/techiedarren/unofficial-dynamic-content-ui/commit/3701f7c))
+
+
+
 <a name="0.3.1"></a>
 ## [0.3.1](https://github.com/techiedarren/unofficial-dynamic-content-ui/compare/v0.3.0...v0.3.1) (2020-09-02)
 
