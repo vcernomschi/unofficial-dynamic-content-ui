@@ -11,6 +11,7 @@ import EditorOneOfField, {
   isOneOfField
 } from "../EditorOneOfField/EditorOneOfField";
 import EditorTextField from "../EditorTextField/EditorTextField";
+import EditorConstField from "../EditorConstField";
 
 export type EditorFieldProvider = (
   schema: any
@@ -87,6 +88,12 @@ export function getDefaultRegistry(): EditorRegistry {
       (schema: any) => {
         if (isOneOfField(schema)) {
           return EditorOneOfField;
+        }
+      },
+
+      (schema: any) => {
+        if(schema && schema.const) {
+          return EditorConstField;
         }
       },
 

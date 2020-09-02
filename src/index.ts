@@ -45,6 +45,9 @@ export * from "./EditorContentLinkField";
 export { default as EditorOneOfField } from "./EditorOneOfField";
 export * from "./EditorOneOfField";
 
+export { default as EditorConstField } from "./EditorConstField";
+export * from "./EditorConstField";
+
 export * from "./Icons";
 
 export { default as ImageCard } from "./ImageCard";
