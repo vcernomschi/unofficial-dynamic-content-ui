@@ -42,6 +42,9 @@ export * from "./EditorMediaLinkField";
 export { default as EditorFieldContentLink } from "./EditorContentLinkField";
 export * from "./EditorContentLinkField";
 
+export { default as EditorOneOfField } from "./EditorOneOfField";
+export * from "./EditorOneOfField";
+
 export * from "./Icons";
 
 export { default as ImageCard } from "./ImageCard";

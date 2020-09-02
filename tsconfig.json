@@ -19,7 +19,9 @@
     "typeRoots": [
       "./node_modules/@types"
     ],
-    "declaration": true
+    "allowJs": true,
+    "isolatedModules": true,
+    "noEmit": true
   },
   "include": [
     "src"

@@ -7,6 +7,9 @@ import EditorContentLinkField from "../EditorContentLinkField";
 import EditorDropdownField from "../EditorDropdownField";
 import EditorMediaLinkField from "../EditorMediaLinkField";
 import EditorObjectField from "../EditorObjectField/EditorObjectField";
+import EditorOneOfField, {
+  isOneOfField
+} from "../EditorOneOfField/EditorOneOfField";
 import EditorTextField from "../EditorTextField/EditorTextField";
 
 export type EditorFieldProvider = (
@@ -80,6 +83,13 @@ export function getComponentForSchema(
 export function getDefaultRegistry(): EditorRegistry {
   return {
     fieldProviders: [
+      // one of
+      (schema: any) => {
+        if (isOneOfField(schema)) {
+          return EditorOneOfField;
+        }
+      },
+
       // dropdown
       (schema: any) => (schema.enum ? EditorDropdownField : undefined),
 
