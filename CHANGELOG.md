@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.3.0"></a>
+# [0.3.0](https://github.com/techiedarren/unofficial-dynamic-content-ui/compare/v0.2.3...v0.3.0) (2020-09-02)
+
+
+### Features
+
+* support for oneOf JSON schema keyword ([ff7f23b](https://github.com/techiedarren/unofficial-dynamic-content-ui/commit/ff7f23b))
+
+
+
 <a name="0.2.3"></a>
 ## [0.2.3](https://github.com/techiedarren/unofficial-dynamic-content-ui/compare/v0.2.2...v0.2.3) (2020-02-09)
 
