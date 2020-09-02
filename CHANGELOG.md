@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.4.2"></a>
+## [0.4.2](https://github.com/techiedarren/unofficial-dynamic-content-ui/compare/v0.4.1...v0.4.2) (2020-09-02)
+
+
+### Bug Fixes
+
+* include type declarations ([7ddbc1c](https://github.com/techiedarren/unofficial-dynamic-content-ui/commit/7ddbc1c))
+* remove allowJs ([62e9545](https://github.com/techiedarren/unofficial-dynamic-content-ui/commit/62e9545))
+* remove isolate modules ([fa841e4](https://github.com/techiedarren/unofficial-dynamic-content-ui/commit/fa841e4))
+
+
+
 <a name="0.4.1"></a>
 ## [0.4.1](https://github.com/techiedarren/unofficial-dynamic-content-ui/compare/v0.4.0...v0.4.1) (2020-09-02)
 
