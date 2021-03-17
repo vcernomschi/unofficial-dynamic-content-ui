@@ -1,12 +1,6 @@
-import React, { PropsWithChildren } from "react";
+import React from "react";
 
-import {
-  SvgIcon,
-  Tooltip,
-  Typography,
-  withStyles,
-  WithStyles
-} from "@material-ui/core";
+import { Tooltip, withStyles, WithStyles } from "@material-ui/core";
 import { KeyboardArrowDown, KeyboardArrowRight } from "@material-ui/icons";
 import clsx from "clsx";
 import CardContainer from "../Chooser/Chooser";
@@ -27,7 +21,7 @@ import Visualization from "../Visualization";
 
 import { ContentClient } from "dc-delivery-sdk-js";
 
-const styles = {
+export const styles = {
   root: {
     width: "100%"
   },
@@ -41,7 +35,9 @@ const styles = {
 };
 
 export interface EditorContentLinkFieldProps
-  extends WithEditorFieldProps<WithStyles<typeof styles>> {}
+  extends WithEditorFieldProps<WithStyles<typeof styles>> {
+  contentReference?: boolean;
+}
 
 function getContentTypes(schema: any): string[] {
   if (!schema.allOf) {
@@ -66,7 +62,7 @@ function getContentTypes(schema: any): string[] {
   return result;
 }
 
-const EditorContentLinkField: React.SFC<EditorContentLinkFieldProps> = (
+export const EditorContentLinkField: React.SFC<EditorContentLinkFieldProps> = (
   props: EditorContentLinkFieldProps
 ) => {
   const { schema, onChange, value, parentType, classes } = props;
@@ -79,9 +75,11 @@ const EditorContentLinkField: React.SFC<EditorContentLinkFieldProps> = (
   const handleBrowse = React.useCallback(async () => {
     try {
       if (sdk) {
-        const contentLink = await sdk.contentLink.get(contentTypes);
-        if (contentLink && onChange) {
-          onChange(contentLink);
+        const content = props.contentReference
+          ? await sdk.contentReference.get(contentTypes)
+          : await sdk.contentLink.get(contentTypes);
+        if (content && onChange) {
+          onChange(content);
         }
       }
       // tslint:disable-next-line
