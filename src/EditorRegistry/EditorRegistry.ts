@@ -4,6 +4,7 @@ import { EditorFieldProps } from "../EditorField";
 import { ErrorReport, SchemaValidationError } from "dc-extensions-sdk";
 
 import EditorContentLinkField from "../EditorContentLinkField";
+import EditorContentReferenceField from "../EditorContentReferenceField";
 import EditorDropdownField from "../EditorDropdownField";
 import EditorMediaLinkField from "../EditorMediaLinkField";
 import EditorObjectField from "../EditorObjectField/EditorObjectField";
@@ -116,6 +117,12 @@ export function getDefaultRegistry(): EditorRegistry {
       forBuiltInSchema(
         ["http://bigcontent.io/cms/schema/v1/core#/definitions/content-link"],
         EditorContentLinkField
+      ),
+
+      // content-reference
+      forBuiltInSchema(
+        ["http://bigcontent.io/cms/schema/v1/core#/definitions/content-reference"],
+        EditorContentReferenceField
       ),
 
       // object
