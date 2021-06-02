@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.5.1](https://github.com/techiedarren/unofficial-dynamic-content-ui/compare/v0.5.0...v0.5.1) (2021-06-02)
+
+
+### Bug Fixes
+
+* content references not loading correctly ([5d4b72b](https://github.com/techiedarren/unofficial-dynamic-content-ui/commit/5d4b72b4c080699446dc36bd7626df884c49ba82))
+
 ## [0.5.0](https://github.com/techiedarren/unofficial-dynamic-content-ui/compare/v0.4.2...v0.5.0) (2021-04-07)
 
 
