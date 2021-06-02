@@ -1,10 +1,4 @@
-import { withStyles } from "@material-ui/core";
-import {
-  EditorContentLinkField,
-  styles
-} from "../EditorContentLinkField/EditorContentLinkField";
+import React from 'react';
+import EditorContentLinkField from "../EditorContentLinkField";
 
-export default withStyles(styles, {
-  name: "DcEditorContentReferenceField",
-  contentReference: true
-})(EditorContentLinkField);
+export default (props: any) => <EditorContentLinkField {...props} contentReference={true} />;
