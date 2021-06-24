@@ -33,6 +33,15 @@ export * from "./EditorContentLinkField";
 export { default as EditorTextField } from "./EditorTextField";
 export * from "./EditorTextField";
 
+export { default as EditorNumberField } from "./EditorNumberField";
+export * from "./EditorNumberField";
+
+export { default as EditorColorField } from "./EditorColorField";
+export * from "./EditorColorField";
+
+export { default as EditorListField } from "./EditorListField";
+export * from "./EditorListField";
+
 export { default as EditorDropdownField } from "./EditorDropdownField";
 export * from "./EditorDropdownField";
 

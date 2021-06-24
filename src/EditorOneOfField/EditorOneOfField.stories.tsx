@@ -1,8 +1,7 @@
 import { storiesOf } from "@storybook/react";
 import React from "react";
-import Form from "../Editor/Editor";
-import { withEditor } from "../utils/withEditor";
 import Editor from "../Editor/Editor";
+import { withEditor } from "../utils/withEditor";
 
 const contentLink = {
   type: "object",
@@ -33,7 +32,7 @@ const schema = {
             template: {
               const: "two_column"
             },
-            title: { type: 'string' },
+            title: { type: "string" },
             column1: contentLink,
             column2: contentLink
           }
@@ -56,16 +55,18 @@ const schema = {
 };
 
 storiesOf("EditorOneOfField", module).add("Editor", () => {
-  const [value, setValue] = React.useState({ choice: { template: "two_column" } });
+  const [value, setValue] = React.useState({
+    choice: { template: "two_column" }
+  });
 
   const handleChange = (newValue: any) => {
     setValue(newValue);
   };
 
-  return <div>
-    <Editor schema={schema} value={value} onChange={handleChange} />
-    <code>
-      {JSON.stringify(value)}
-    </code>
-  </div>;
+  return (
+    <div>
+      <Editor schema={schema} value={value} onChange={handleChange} />
+      <code>{JSON.stringify(value)}</code>
+    </div>
+  );
 });

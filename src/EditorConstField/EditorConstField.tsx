@@ -12,8 +12,7 @@ import clsx from "clsx";
 import { EditorFieldParentType, WithEditorFieldProps } from "../EditorField";
 import EditorField from "../EditorField/EditorField";
 
-export const styles = {
-};
+export const styles = {};
 
 export interface EditorConstFieldProps
   extends WithEditorFieldProps<WithStyles<typeof styles>> {}
