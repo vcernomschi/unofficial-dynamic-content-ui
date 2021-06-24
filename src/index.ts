@@ -33,6 +33,9 @@ export * from "./EditorContentLinkField";
 export { default as EditorTextField } from "./EditorTextField";
 export * from "./EditorTextField";
 
+export { default as EditorCheckboxField } from "./EditorCheckboxField";
+export * from "./EditorCheckboxField";
+
 export { default as EditorNumberField } from "./EditorNumberField";
 export * from "./EditorNumberField";
 

@@ -3,6 +3,7 @@ import { EditorFieldProps } from "../EditorField";
 
 import { ErrorReport, SchemaValidationError } from "dc-extensions-sdk";
 
+import EditorCheckboxField from "../EditorCheckboxField/EditorCheckboxField";
 import EditorColorField from "../EditorColorField/EditorColorField";
 import EditorConstField from "../EditorConstField";
 import EditorContentLinkField from "../EditorContentLinkField";
@@ -120,6 +121,9 @@ export function getDefaultRegistry(): EditorRegistry {
 
       // number field
       forType("number", EditorNumberField),
+
+      // boolean field
+      forType("boolean", EditorCheckboxField),
 
       // text field
       forFormat("string", "color", EditorColorField),

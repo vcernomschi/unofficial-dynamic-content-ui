@@ -76,8 +76,7 @@ export const styles = {
 };
 
 export interface EditorListFieldProps
-  extends WithEditorFieldProps<WithStyles<typeof styles>> {
-}
+  extends WithEditorFieldProps<WithStyles<typeof styles>> {}
 
 const EditorListField: React.SFC<EditorListFieldProps> = (
   props: EditorListFieldProps
@@ -144,7 +143,7 @@ const EditorListField: React.SFC<EditorListFieldProps> = (
   return schema.items.type === "string" ? (
     <div className={clsx(classes.rootProperty)}>
       <CollapsibleSection onChange={handleExpand}>
-        <CollapsibleSectionHeader icon={Icon} title={schema.title}/>
+        <CollapsibleSectionHeader icon={Icon} title={schema.title} />
         <ul
           className={clsx(classes.list, {
             [classes.listCards]: schema.items.type !== "string"
@@ -185,7 +184,7 @@ const EditorListField: React.SFC<EditorListFieldProps> = (
                 // tslint:disable-next-line
                 onClick={() => removeItem(index)}
               >
-                <DeleteOutlined/>
+                <DeleteOutlined />
               </IconButton>
             </li>
           ))}
