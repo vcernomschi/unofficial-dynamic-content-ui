@@ -27,6 +27,7 @@
     "version:major": "standard-version --release-as major",
     "reset": "git clean -dfx && git reset --hard && npm i",
     "all": "run-s reset build test",
+    "prepare": "run-s clean build-ts build-copy-img",
     "prepare-patch-release": "run-s all version:patch",
     "prepare-minor-release": "run-s all version:minor",
     "prepare-major-release": "run-s all version:major"
