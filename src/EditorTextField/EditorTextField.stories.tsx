@@ -54,4 +54,13 @@ storiesOf("EditorTextField", module)
         required={true}
       />
     )
+  )
+  .add("With Default", () =>
+    withTheme(
+      <EditorTextField
+        pointer=""
+        schema={{ ...schema, default: "Default" }}
+        required={true}
+      />
+    )
   );

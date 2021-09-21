@@ -54,4 +54,13 @@ storiesOf("EditorCheckboxField", module)
         required={true}
       />
     )
+  )
+  .add("With Default", () =>
+    withTheme(
+      <EditorCheckboxField
+        pointer=""
+        schema={{ ...schema, default: true }}
+        required={true}
+      />
+    )
   );

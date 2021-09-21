@@ -96,7 +96,7 @@ const EditorListField: React.SFC<EditorListFieldProps> = (
   const [isExpanded, setExpandedState] = React.useState(true);
   const [isHovering, setHovering] = React.useState(-1);
   const [items, setItems] = React.useState<string[]>(
-    value || new Array(minItems).fill("")
+    value || schema.default || new Array(minItems).fill("")
   );
 
   const handleChange = React.useCallback(

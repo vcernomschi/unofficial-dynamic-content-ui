@@ -54,10 +54,10 @@ export const styles = {
       width: 16,
       height: 16,
       backgroundImage:
-        "url(\"data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath" +
-        " fill-rule='evenodd' clip-rule='evenodd' d='M12 5c-.28 0-.53.11-.71.29L7 9.59l-2.29-2.3a1.003 " +
-        "1.003 0 00-1.42 1.42l3 3c.18.18.43.29.71.29s.53-.11.71-.29l5-5A1.003 1.003 0 0012 5z' fill='%23fff'/%3E%3C/svg%3E\")",
-      content: '""'
+      "url(\"data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath" +
+      " fill-rule='evenodd' clip-rule='evenodd' d='M12 5c-.28 0-.53.11-.71.29L7 9.59l-2.29-2.3a1.003 " +
+      "1.003 0 00-1.42 1.42l3 3c.18.18.43.29.71.29s.53-.11.71-.29l5-5A1.003 1.003 0 0012 5z' fill='%23fff'/%3E%3C/svg%3E\")",
+      content: "\"\""
     },
     "input:hover ~ &": {
       backgroundColor: "#039be5"
@@ -73,7 +73,8 @@ export const styles = {
 };
 
 export interface EditorCheckboxFieldProps
-  extends WithEditorFieldProps<WithStyles<typeof styles>> {}
+  extends WithEditorFieldProps<WithStyles<typeof styles>> {
+}
 
 const EditorCheckboxField: React.SFC<EditorCheckboxFieldProps> = (
   props: EditorCheckboxFieldProps
@@ -91,11 +92,14 @@ const EditorCheckboxField: React.SFC<EditorCheckboxFieldProps> = (
     registry
   } = props;
 
+  const [localValue, setValue] = React.useState(schema.default || value || false);
+
   const handleChange = React.useCallback(
     event => {
       const newValue = event.target.checked;
 
       if (onChange) {
+        setValue(newValue);
         onChange(newValue);
       }
     },
@@ -117,14 +121,14 @@ const EditorCheckboxField: React.SFC<EditorCheckboxFieldProps> = (
             required={required}
             onChange={handleChange}
             checkedIcon={
-              <span className={clsx(classes.icon, classes.checkedIcon)} />
+              <span className={clsx(classes.icon, classes.checkedIcon)}/>
             }
-            icon={<span className={classes.icon} />}
+            icon={<span className={classes.icon}/>}
             inputProps={{
               readOnly: readonly,
               "aria-label": schema.description || ""
             }}
-            checked={Boolean(value)}
+            checked={Boolean(localValue)}
           />
         )}
         classes={{

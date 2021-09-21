@@ -74,13 +74,16 @@ const EditorContentLinkField: React.SFC<EditorContentLinkFieldProps> = (
   const { sdk } = React.useContext(SdkContext);
 
   const contentTypes: string[] = getContentTypes(schema);
-  const hasValue = value != null && value._meta && value._meta.schema;
+  const hasValue = (value != null && value._meta && value._meta.schema) || (schema.default && schema.default._meta && schema.default._meta.schema);
+
+  const [localValue, setValue] = React.useState(schema.default || value);
 
   const handleBrowse = React.useCallback(async () => {
     try {
       if (sdk) {
         const contentLink = await sdk.contentLink.get(contentTypes);
         if (contentLink && onChange) {
+          setValue(contentLink);
           onChange(contentLink);
         }
       }
@@ -91,6 +94,7 @@ const EditorContentLinkField: React.SFC<EditorContentLinkFieldProps> = (
   const handleDelete = React.useCallback(
     event => {
       if (onChange) {
+        setValue(undefined);
         onChange(undefined);
       }
     },
@@ -115,15 +119,15 @@ const EditorContentLinkField: React.SFC<EditorContentLinkFieldProps> = (
   );
 
   const handleFetchContentJson = React.useCallback(async () => {
-    if (value && value.id && sdk) {
-      setLoadedContentItemId(value.id);
+    if (localValue && localValue.id && sdk) {
+      setLoadedContentItemId(localValue.id);
 
       try {
         const contentClient = new ContentClient({
           account: "staging",
           stagingEnvironment: sdk.stagingEnvironment
         });
-        const content = await contentClient.getContentItem(value.id);
+        const content = await contentClient.getContentItem(localValue.id);
         setContentItemJson(content.toJSON());
       } catch (err) {
         setContentItemJson(undefined);
@@ -131,9 +135,9 @@ const EditorContentLinkField: React.SFC<EditorContentLinkFieldProps> = (
     } else {
       setContentItemJson(undefined);
     }
-  }, [value, setLoadedContentItemId, setContentItemJson]);
+  }, [localValue, setLoadedContentItemId, setContentItemJson]);
 
-  if (hasValue && value.id && value.id !== loadedContentItemId) {
+  if (hasValue && localValue.id && localValue.id !== loadedContentItemId) {
     handleFetchContentJson();
   }
 
@@ -142,10 +146,10 @@ const EditorContentLinkField: React.SFC<EditorContentLinkFieldProps> = (
       sdk && sdk.field ? sdk.field.schema : {},
       {}
     ).contentTypes;
-    const iconUrl = getContentTypeIcon(contentTypeSettings, value.contentType);
+    const iconUrl = getContentTypeIcon(contentTypeSettings, localValue.contentType);
     const cardTemplateUrl = getContentTypeCard(
       contentTypeSettings,
-      value.contentType
+      localValue.contentType
     );
 
     cardContainer = (
@@ -162,7 +166,7 @@ const EditorContentLinkField: React.SFC<EditorContentLinkFieldProps> = (
             <Visualization
               template={cardTemplateUrl}
               params={{
-                contentItemId: value.id,
+                contentItemId: localValue.id,
                 stagingEnvironment: sdk.stagingEnvironment
               }}
             />

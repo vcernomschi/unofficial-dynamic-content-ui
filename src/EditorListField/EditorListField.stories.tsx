@@ -31,4 +31,10 @@ storiesOf("EditorListField", module)
         enum: ["Option One", "Option Two", "Option Three"]
       }
     })
+  )
+  .add("Component list with default", () =>
+    withEditor({
+      ...schema,
+      default: ["1", "2"]
+    })
   );

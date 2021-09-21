@@ -33,7 +33,7 @@ storiesOf("EditorNumberField", module)
       <EditorNumberField
         pointer=""
         schema={schema}
-        value="value"
+        value="0"
         readonly={true}
       />
     )
@@ -43,7 +43,7 @@ storiesOf("EditorNumberField", module)
       <EditorNumberField
         pointer=""
         schema={schema}
-        value="value"
+        value="0"
         disabled={true}
       />
     )
@@ -62,6 +62,15 @@ storiesOf("EditorNumberField", module)
       <EditorNumberField
         pointer=""
         schema={{ ...schema, minimum: 3, maximum: 10 }}
+        required={true}
+      />
+    )
+  )
+  .add("With Default", () =>
+    withTheme(
+      <EditorNumberField
+        pointer=""
+        schema={{ ...schema, default: 10 }}
         required={true}
       />
     )

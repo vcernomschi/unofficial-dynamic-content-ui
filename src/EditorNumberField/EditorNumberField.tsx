@@ -109,13 +109,14 @@ const EditorNumberField: React.SFC<EditorNumberFieldProps> = (
         required={required}
         onChange={handleChange}
         type={"number"}
+        defaultValue={schema.default}
         inputProps={{
           readOnly: readonly,
           "aria-label": schema.description || "",
           className: clsx(classes.input)
         }}
         error={errorMessages.length > 0}
-        value={value || ""}
+        value={value}
       />
       <FormHelperText error={errorMessages.length > 0}>
         {errorMessages.length ? errorMessages[0] : schema.description}

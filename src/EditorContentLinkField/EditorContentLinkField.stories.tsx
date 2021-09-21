@@ -54,8 +54,30 @@ mockSdk.contentLink.get = () => {
   return Promise.resolve(contentLink);
 };
 
-storiesOf("EditorContentLinkField", module).add("Editor", () => (
+storiesOf("EditorContentLinkField", module)
+  .add("Editor", () => (
   <SdkContext.Provider value={{ sdk: mockSdk }}>
     {withEditor(schema, contentLink)}
   </SdkContext.Provider>
-));
+))
+  .add("Component with default", () => (
+    <SdkContext.Provider value={{ sdk: mockSdk }}>
+      {withTheme(
+        <EditorContentLinkField
+          pointer=""
+          schema={{
+            ...schema,
+            default: {
+              _meta: {
+                schema: "http://bigcontent.io/cms/schema/v1/core#/definitions/content-link"
+              },
+              contentType:
+                "https://raw.githubusercontent.com/neilmistryamplience/dc-example-website/willow/content-types/card.json",
+              id: "c6f77ffc-9d70-45e9-b322-89d4436b8774"
+            }
+
+          }}
+        />
+      )}
+    </SdkContext.Provider>
+  ));

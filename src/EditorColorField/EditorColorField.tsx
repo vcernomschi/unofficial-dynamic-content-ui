@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import {
   FormControl,
@@ -39,6 +39,8 @@ const EditorColorField: React.SFC<EditorColorFieldProps> = (
     registry
   } = props;
 
+  const [localValue, setValue] = useState(schema.default || value || "");
+
   const handleChange = React.useCallback(
     newValue => {
       if (newValue === "") {
@@ -46,6 +48,7 @@ const EditorColorField: React.SFC<EditorColorFieldProps> = (
       }
 
       if (onChange) {
+        setValue(newValue);
         onChange(newValue);
       }
     },
@@ -59,8 +62,8 @@ const EditorColorField: React.SFC<EditorColorFieldProps> = (
     <FormControl className={classes.root}>
       <ColorPicker
         name="color"
-        defaultValue={value || ""}
-        value={value || ""}
+        defaultValue={localValue}
+        value={localValue}
         autoComplete="off"
         label={schema.title || ""}
         disabled={disabled}
@@ -68,25 +71,12 @@ const EditorColorField: React.SFC<EditorColorFieldProps> = (
         inputProps={{
           readOnly: readonly,
           "aria-label": schema.description || "",
-          value: value || "",
+          value: localValue || "",
           className: clsx(classes.input)
         }}
         error={errorMessages.length > 0}
         onChange={handleChange}
       />
-      {/*<MuiTextField
-        autoComplete="off"
-        label={schema.title || ""}
-        disabled={disabled}
-        required={required}
-        onChange={handleChange}
-        inputProps={{
-          readOnly: readonly,
-          "aria-label": schema.description || ""
-        }}
-        error={errorMessages.length > 0}
-        value={value || ""}
-      />*/}
       <FormHelperText error={errorMessages.length > 0}>
         {errorMessages.length ? errorMessages[0] : schema.description}
       </FormHelperText>

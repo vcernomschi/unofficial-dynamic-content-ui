@@ -60,12 +60,13 @@ const EditorTextField: React.SFC<EditorTextFieldProps> = (
         disabled={disabled}
         required={required}
         onChange={handleChange}
+        defaultValue={schema.default}
         inputProps={{
           readOnly: readonly,
           "aria-label": schema.description || ""
         }}
         error={errorMessages.length > 0}
-        value={value || ""}
+        value={value}
       />
       <FormHelperText error={errorMessages.length > 0}>
         {errorMessages.length ? errorMessages[0] : schema.description}

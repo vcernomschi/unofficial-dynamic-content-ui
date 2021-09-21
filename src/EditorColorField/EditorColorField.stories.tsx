@@ -12,11 +12,11 @@ const schema = {
 storiesOf("EditorColorField", module)
   .add("Editor", () => withEditor(schema))
   .add("Component", () =>
-    withTheme(<EditorColorField pointer="" schema={schema} />)
+    withTheme(<EditorColorField pointer="" schema={schema}/>)
   )
   .add("Component with title", () =>
     withTheme(
-      <EditorColorField pointer="" schema={{ ...schema, title: "title" }} />
+      <EditorColorField pointer="" schema={{ ...schema, title: "title" }}/>
     )
   )
   .add("Component with description", () =>
@@ -55,4 +55,7 @@ storiesOf("EditorColorField", module)
         required={true}
       />
     )
+  )
+  .add("With Default", () =>
+    withEditor({ ...schema, title: "title", default: "#ffffff" })
   );
