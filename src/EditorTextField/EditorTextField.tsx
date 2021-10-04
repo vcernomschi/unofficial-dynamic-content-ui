@@ -61,6 +61,8 @@ const EditorTextField: React.SFC<EditorTextFieldProps> = (
         required={required}
         onChange={handleChange}
         defaultValue={schema.default}
+        multiline={true}
+        rowsMax={value && value.length > 1000 ? 5 : 1}
         inputProps={{
           readOnly: readonly,
           "aria-label": schema.description || ""
