@@ -7,6 +7,7 @@ import EditorCheckboxField from "../EditorCheckboxField/EditorCheckboxField";
 import EditorColorField from "../EditorColorField/EditorColorField";
 import EditorConstField from "../EditorConstField";
 import EditorContentLinkField from "../EditorContentLinkField";
+import EditorContentReferenceField from "../EditorContentReferenceField";
 import EditorDropdownField from "../EditorDropdownField";
 import EditorListField from "../EditorListField/EditorListField";
 import EditorMediaLinkField from "../EditorMediaLinkField";
@@ -144,6 +145,12 @@ export function getDefaultRegistry(): EditorRegistry {
       forBuiltInSchema(
         ["http://bigcontent.io/cms/schema/v1/core#/definitions/content-link"],
         EditorContentLinkField
+      ),
+
+      // content-reference
+      forBuiltInSchema(
+        ["http://bigcontent.io/cms/schema/v1/core#/definitions/content-reference"],
+        EditorContentReferenceField
       ),
 
       // object

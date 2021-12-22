@@ -54,6 +54,9 @@ export * from "./EditorMediaLinkField";
 export { default as EditorFieldContentLink } from "./EditorContentLinkField";
 export * from "./EditorContentLinkField";
 
+export { default as EditorFieldContentReference } from "./EditorContentReferenceField";
+export * from "./EditorContentReferenceField";
+
 export { default as EditorOneOfField } from "./EditorOneOfField";
 export * from "./EditorOneOfField";
 
