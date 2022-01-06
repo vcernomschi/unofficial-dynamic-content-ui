@@ -57,13 +57,15 @@ const EditorMediaLinkField: React.SFC<EditorMediaLinkFieldProps> = (
       "http://bigcontent.io/cms/schema/v1/core#/definitions/video-link"
     ) !== -1;
 
-  const hasValue = value != null && value._meta && value._meta.schema;
+  const hasValue = (value != null && value._meta && value._meta.schema) || (schema.default && schema.default._meta && schema.default._meta.schema);
 
+  const [localValue, setValue] = React.useState(schema.default || value);
   const handleBrowse = React.useCallback(async () => {
     try {
       if (sdk) {
         const mediaLink = await sdk.mediaLink.getImage();
         if (mediaLink && onChange) {
+          setValue(mediaLink);
           onChange(mediaLink);
         }
       }
@@ -74,6 +76,7 @@ const EditorMediaLinkField: React.SFC<EditorMediaLinkFieldProps> = (
   const handleDelete = React.useCallback(
     event => {
       if (onChange) {
+        setValue(undefined);
         onChange(undefined);
       }
     },
@@ -90,16 +93,16 @@ const EditorMediaLinkField: React.SFC<EditorMediaLinkFieldProps> = (
   const Icon = isExpanded ? KeyboardArrowDown : KeyboardArrowRight;
   let cardContainer;
 
-  if (hasValue) {
+  if (hasValue && localValue) {
     cardContainer = (
       <CardContainer variant="populated-slot">
         <ImageCard
-          label={value.name || ""}
+          label={localValue.name || ""}
           src={`//${
             sdk && sdk.stagingEnvironment
               ? sdk.stagingEnvironment
-              : value.defaultHost
-          }/i/${value.endpoint}/${value.name}?h=195&w=341&sm=MC`}
+              : localValue.defaultHost
+          }/i/${localValue.endpoint}/${localValue.name}?h=195&w=341&sm=MC`}
         />
         <CardContainerActions variant="populated-slot">
           <Tooltip title="Delete">

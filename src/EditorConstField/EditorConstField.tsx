@@ -1,47 +1,49 @@
-import React, { PropsWithChildren } from "react";
+import React from "react";
 
 import {
   FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
-  withStyles,
-  WithStyles
+  TextField as MuiTextField,
+  WithStyles,
+  withStyles
 } from "@material-ui/core";
-import clsx from "clsx";
-import { EditorFieldParentType, WithEditorFieldProps } from "../EditorField";
-import EditorField from "../EditorField/EditorField";
+import { WithEditorFieldProps } from "../EditorField";
 
 export const styles = {
+  root: {
+    width: "100%"
+  }
 };
 
 export interface EditorConstFieldProps
-  extends WithEditorFieldProps<WithStyles<typeof styles>> {}
+  extends WithEditorFieldProps<WithStyles<typeof styles>> {
+}
 
 const EditorConstField: React.SFC<EditorConstFieldProps> = (
   props: EditorConstFieldProps
 ) => {
   const {
     schema,
-    registry,
-    onChange,
-    value: valueProp,
     classes,
-    parentType,
-    errorReport,
-    pointer,
     required,
-    disabled,
-    readonly
+    readonly,
+    value
   } = props;
 
-  React.useEffect(() => {
-    if (onChange) {
-      onChange(schema.const);
-    }
-  }, [schema.const]);
-
-  return <></>;
+  return (
+    <FormControl className={classes.root}>
+      <MuiTextField
+        autoComplete="off"
+        label={schema.title || ""}
+        disabled={true}
+        required={required}
+        inputProps={{
+          readOnly: readonly,
+          "aria-label": schema.description || ""
+        }}
+        value={value}
+      />
+    </FormControl>
+  );
 };
 
 export default withStyles(styles, { name: "DcEditorConstField" })(

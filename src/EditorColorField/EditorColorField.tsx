@@ -1,26 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 
 import {
   FormControl,
   FormHelperText,
-  TextField as MuiTextField,
   withStyles,
   WithStyles
 } from "@material-ui/core";
+import clsx from "clsx";
+import ColorPicker from "material-ui-color-picker";
 import { getErrorMessages, getErrorsForPointer } from "../EditorErrorMessages";
 import { WithEditorFieldProps } from "../EditorField";
 
 export const styles = {
   root: {
     width: "100%"
+  },
+  input: {
+    color: "rgba(0, 0, 0, 0.87)"
   }
 };
 
-export interface EditorTextFieldProps
+export interface EditorColorFieldProps
   extends WithEditorFieldProps<WithStyles<typeof styles>> {}
 
-const EditorTextField: React.SFC<EditorTextFieldProps> = (
-  props: EditorTextFieldProps
+const EditorColorField: React.SFC<EditorColorFieldProps> = (
+  props: EditorColorFieldProps
 ) => {
   const {
     schema,
@@ -35,14 +39,16 @@ const EditorTextField: React.SFC<EditorTextFieldProps> = (
     registry
   } = props;
 
+  const [localValue, setValue] = useState(schema.default || value || "");
+
   const handleChange = React.useCallback(
-    event => {
-      let newValue = event.target.value;
+    newValue => {
       if (newValue === "") {
         newValue = undefined;
       }
 
       if (onChange) {
+        setValue(newValue);
         onChange(newValue);
       }
     },
@@ -54,21 +60,22 @@ const EditorTextField: React.SFC<EditorTextFieldProps> = (
 
   return (
     <FormControl className={classes.root}>
-      <MuiTextField
+      <ColorPicker
+        name="color"
+        defaultValue={localValue}
+        value={localValue}
         autoComplete="off"
         label={schema.title || ""}
         disabled={disabled}
         required={required}
-        onChange={handleChange}
-        defaultValue={schema.default}
-        multiline={true}
-        rowsMax={value && value.length > 1000 ? 5 : 1}
         inputProps={{
           readOnly: readonly,
-          "aria-label": schema.description || ""
+          "aria-label": schema.description || "",
+          value: localValue || "",
+          className: clsx(classes.input)
         }}
         error={errorMessages.length > 0}
-        value={value}
+        onChange={handleChange}
       />
       <FormHelperText error={errorMessages.length > 0}>
         {errorMessages.length ? errorMessages[0] : schema.description}
@@ -77,6 +84,6 @@ const EditorTextField: React.SFC<EditorTextFieldProps> = (
   );
 };
 
-export default withStyles(styles, { name: "DcEditorTextField" })(
-  EditorTextField
+export default withStyles(styles, { name: "DcEditorColorField" })(
+  EditorColorField
 );

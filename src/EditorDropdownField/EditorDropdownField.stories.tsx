@@ -1,8 +1,7 @@
 import { storiesOf } from "@storybook/react";
 import React from "react";
-import { withTheme } from "../utils";
-import { withEditor } from "../utils/withEditor";
-import EditorTextField from "./EditorDropdownField";
+import { withEditor } from "../utils";
+import EditorDropdownField from "./EditorDropdownField";
 
 const schema = {
   type: "string",
@@ -11,6 +10,10 @@ const schema = {
   description: "description"
 };
 
-storiesOf("EditorDropdownField", module).add("Editor", () =>
-  withEditor(schema)
-);
+storiesOf("EditorDropdownField", module)
+  .add("Editor", () =>
+    withEditor(schema)
+  )
+  .add("With Default", () =>
+    withEditor({...schema, default: "Option Two"})
+  );

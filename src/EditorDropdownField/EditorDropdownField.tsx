@@ -45,12 +45,14 @@ const EditorDropdownField: React.SFC<EditorDropdownFieldProps> = (
     errorReport,
     registry
   } = props;
+  const [localValue, setValue] = React.useState(value || schema.default || "");
 
   const handleChange = React.useCallback(
     event => {
       const newValue = event.target.value;
       if (onChange) {
         onChange(newValue);
+        setValue(newValue)
       }
     },
     [onChange]
@@ -73,7 +75,7 @@ const EditorDropdownField: React.SFC<EditorDropdownFieldProps> = (
           "aria-label": schema.description || ""
         }}
         error={errorMessages.length > 0}
-        value={value}
+        value={localValue}
       >
         <InputLabel className={clsx(classes.selectTitle)}>
           {schema.title || ""}

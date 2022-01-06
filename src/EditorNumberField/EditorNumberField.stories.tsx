@@ -2,25 +2,27 @@ import { storiesOf } from "@storybook/react";
 import React from "react";
 import { withTheme } from "../utils";
 import { withEditor } from "../utils/withEditor";
-import EditorTextField from "./EditorTextField";
+import EditorNumberField from "./EditorNumberField";
 
 const schema = {
-  type: "string"
+  type: "number",
+  minimum: 3,
+  maximum: 10
 };
 
-storiesOf("EditorTextField", module)
+storiesOf("EditorNumberField", module)
   .add("Editor", () => withEditor(schema))
   .add("Component", () =>
-    withTheme(<EditorTextField pointer="" schema={schema} />)
+    withTheme(<EditorNumberField pointer="" schema={schema} />)
   )
   .add("Component with title", () =>
     withTheme(
-      <EditorTextField pointer="" schema={{ ...schema, title: "title" }} />
+      <EditorNumberField pointer="" schema={{ ...schema, title: "title" }} />
     )
   )
   .add("Component with description", () =>
     withTheme(
-      <EditorTextField
+      <EditorNumberField
         pointer=""
         schema={{ ...schema, title: "title", description: "description" }}
       />
@@ -28,38 +30,47 @@ storiesOf("EditorTextField", module)
   )
   .add("Read Only", () =>
     withTheme(
-      <EditorTextField
+      <EditorNumberField
         pointer=""
         schema={schema}
-        value="value"
+        value="0"
         readonly={true}
       />
     )
   )
   .add("Disabled", () =>
     withTheme(
-      <EditorTextField
+      <EditorNumberField
         pointer=""
         schema={schema}
-        value="value"
+        value="0"
         disabled={true}
       />
     )
   )
   .add("Required", () =>
     withTheme(
-      <EditorTextField
+      <EditorNumberField
         pointer=""
         schema={{ ...schema, title: "title" }}
         required={true}
       />
     )
   )
+  .add("Minimum and maximum", () =>
+    withTheme(
+      <EditorNumberField
+        pointer=""
+        schema={{ ...schema, minimum: 3, maximum: 10 }}
+        required={true}
+      />
+    )
+  )
   .add("With Default", () =>
     withTheme(
-      <EditorTextField
+      <EditorNumberField
         pointer=""
-        schema={{ ...schema, default: "Default" }}
+        schema={{ ...schema, default: 10 }}
         required={true}
       />
     )

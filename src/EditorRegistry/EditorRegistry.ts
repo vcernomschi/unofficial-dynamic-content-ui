@@ -3,16 +3,20 @@ import { EditorFieldProps } from "../EditorField";
 
 import { ErrorReport, SchemaValidationError } from "dc-extensions-sdk";
 
+import EditorCheckboxField from "../EditorCheckboxField/EditorCheckboxField";
+import EditorColorField from "../EditorColorField/EditorColorField";
+import EditorConstField from "../EditorConstField";
 import EditorContentLinkField from "../EditorContentLinkField";
 import EditorContentReferenceField from "../EditorContentReferenceField";
 import EditorDropdownField from "../EditorDropdownField";
+import EditorListField from "../EditorListField/EditorListField";
 import EditorMediaLinkField from "../EditorMediaLinkField";
+import EditorNumberField from "../EditorNumberField/EditorNumberField";
 import EditorObjectField from "../EditorObjectField/EditorObjectField";
 import EditorOneOfField, {
   isOneOfField
 } from "../EditorOneOfField/EditorOneOfField";
 import EditorTextField from "../EditorTextField/EditorTextField";
-import EditorConstField from "../EditorConstField";
 
 export type EditorFieldProvider = (
   schema: any
@@ -33,6 +37,18 @@ export function forType(
 ): EditorFieldProvider {
   return (schema: any) => {
     if (schema.type === type) {
+      return component;
+    }
+  };
+}
+
+export function forFormat(
+  type: string,
+  format: string,
+  component: ComponentType<EditorFieldProps>
+): EditorFieldProvider {
+  return (schema: any) => {
+    if (schema.format === format && schema.type === type) {
       return component;
     }
   };
@@ -93,13 +109,25 @@ export function getDefaultRegistry(): EditorRegistry {
       },
 
       (schema: any) => {
-        if(schema && schema.const) {
+        if (schema && schema.const) {
           return EditorConstField;
         }
       },
 
       // dropdown
       (schema: any) => (schema.enum ? EditorDropdownField : undefined),
+
+      // list field
+      forType("array", EditorListField),
+
+      // number field
+      forType("number", EditorNumberField),
+
+      // boolean field
+      forType("boolean", EditorCheckboxField),
+
+      // text field
+      forFormat("string", "color", EditorColorField),
 
       // text field
       forType("string", EditorTextField),
@@ -154,12 +182,12 @@ export function getDefaultErrorMessages(): {
     minimum: (schema: any, error: ErrorReport) => {
       const errorData = error.data as SchemaValidationError;
       const params = errorData.params as any;
-      return `${schema.title} should be at least ${params.limit}`;
+      return `${schema.title || "Field"} should be at least ${params.limit}`;
     },
     maximum: (schema: any, error: ErrorReport) => {
       const errorData = error.data as SchemaValidationError;
       const params = errorData.params as any;
-      return `${schema.title} should be at most ${params.limit}`;
+      return `${schema.title || "Field"} should be at most ${params.limit}`;
     }
   };
 }

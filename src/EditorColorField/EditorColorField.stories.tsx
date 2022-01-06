@@ -2,25 +2,26 @@ import { storiesOf } from "@storybook/react";
 import React from "react";
 import { withTheme } from "../utils";
 import { withEditor } from "../utils/withEditor";
-import EditorTextField from "./EditorTextField";
+import EditorColorField from "./EditorColorField";
 
 const schema = {
-  type: "string"
+  type: "string",
+  format: "color"
 };
 
-storiesOf("EditorTextField", module)
+storiesOf("EditorColorField", module)
   .add("Editor", () => withEditor(schema))
   .add("Component", () =>
-    withTheme(<EditorTextField pointer="" schema={schema} />)
+    withTheme(<EditorColorField pointer="" schema={schema}/>)
   )
   .add("Component with title", () =>
     withTheme(
-      <EditorTextField pointer="" schema={{ ...schema, title: "title" }} />
+      <EditorColorField pointer="" schema={{ ...schema, title: "title" }}/>
     )
   )
   .add("Component with description", () =>
     withTheme(
-      <EditorTextField
+      <EditorColorField
         pointer=""
         schema={{ ...schema, title: "title", description: "description" }}
       />
@@ -28,7 +29,7 @@ storiesOf("EditorTextField", module)
   )
   .add("Read Only", () =>
     withTheme(
-      <EditorTextField
+      <EditorColorField
         pointer=""
         schema={schema}
         value="value"
@@ -38,7 +39,7 @@ storiesOf("EditorTextField", module)
   )
   .add("Disabled", () =>
     withTheme(
-      <EditorTextField
+      <EditorColorField
         pointer=""
         schema={schema}
         value="value"
@@ -48,7 +49,7 @@ storiesOf("EditorTextField", module)
   )
   .add("Required", () =>
     withTheme(
-      <EditorTextField
+      <EditorColorField
         pointer=""
         schema={{ ...schema, title: "title" }}
         required={true}
@@ -56,11 +57,5 @@ storiesOf("EditorTextField", module)
     )
   )
   .add("With Default", () =>
-    withTheme(
-      <EditorTextField
-        pointer=""
-        schema={{ ...schema, default: "Default" }}
-        required={true}
-      />
-    )
+    withEditor({ ...schema, title: "title", default: "#ffffff" })
   );

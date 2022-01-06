@@ -1,29 +1,16 @@
 import { storiesOf } from "@storybook/react";
 import React from "react";
-import Editor from '../Editor';
-import { withEditor } from "../utils/withEditor";
-
+import Editor from "../Editor";
+import { withEditor, withTheme } from "../utils";
+import EditorConstField from "./EditorConstField";
 
 const schema = {
-  type: "object",
-  properties: {
-    const1: {
-      const: "hello world"
-    }
-  }
+  const: "hello world",
+  value: "hello world"
 };
 
-storiesOf("EditorConstField", module).add("Editor", () => {
-  const [value, setValue] = React.useState(null);
-
-  const handleChange = (newValue: any) => {
-    setValue(newValue);
-  };
-
-  return <div>
-    <Editor schema={schema} value={{}} onChange={handleChange} />
-    <code>
-      {JSON.stringify(value)}
-    </code>
-  </div>;
-});
+storiesOf("EditorConstField", module)
+  .add("Editor", () => withEditor(schema))
+  .add("Component", () =>
+    withTheme(<EditorConstField pointer="" value="hello world" schema={{ ...schema, title: "Const" }}/>)
+  );

@@ -2,25 +2,25 @@ import { storiesOf } from "@storybook/react";
 import React from "react";
 import { withTheme } from "../utils";
 import { withEditor } from "../utils/withEditor";
-import EditorTextField from "./EditorTextField";
+import EditorCheckboxField from "./EditorCheckboxField";
 
 const schema = {
-  type: "string"
+  type: "boolean"
 };
 
-storiesOf("EditorTextField", module)
+storiesOf("EditorCheckboxField", module)
   .add("Editor", () => withEditor(schema))
   .add("Component", () =>
-    withTheme(<EditorTextField pointer="" schema={schema} />)
+    withTheme(<EditorCheckboxField pointer="" schema={schema} />)
   )
   .add("Component with title", () =>
     withTheme(
-      <EditorTextField pointer="" schema={{ ...schema, title: "title" }} />
+      <EditorCheckboxField pointer="" schema={{ ...schema, title: "title" }} />
     )
   )
   .add("Component with description", () =>
     withTheme(
-      <EditorTextField
+      <EditorCheckboxField
         pointer=""
         schema={{ ...schema, title: "title", description: "description" }}
       />
@@ -28,7 +28,7 @@ storiesOf("EditorTextField", module)
   )
   .add("Read Only", () =>
     withTheme(
-      <EditorTextField
+      <EditorCheckboxField
         pointer=""
         schema={schema}
         value="value"
@@ -38,7 +38,7 @@ storiesOf("EditorTextField", module)
   )
   .add("Disabled", () =>
     withTheme(
-      <EditorTextField
+      <EditorCheckboxField
         pointer=""
         schema={schema}
         value="value"
@@ -48,7 +48,7 @@ storiesOf("EditorTextField", module)
   )
   .add("Required", () =>
     withTheme(
-      <EditorTextField
+      <EditorCheckboxField
         pointer=""
         schema={{ ...schema, title: "title" }}
         required={true}
@@ -57,9 +57,9 @@ storiesOf("EditorTextField", module)
   )
   .add("With Default", () =>
     withTheme(
-      <EditorTextField
+      <EditorCheckboxField
         pointer=""
-        schema={{ ...schema, default: "Default" }}
+        schema={{ ...schema, default: true }}
         required={true}
       />
     )
