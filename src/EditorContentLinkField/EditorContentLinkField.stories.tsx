@@ -2,7 +2,7 @@ import { storiesOf } from "@storybook/react";
 import { SDK } from "dc-extensions-sdk";
 import React from "react";
 import SdkContext from "../SdkContext";
-import { withEditor } from "../utils/withEditor";
+import { withTheme, withEditor } from "../utils";
 import EditorContentLinkField from "./EditorContentLinkField";
 
 const schema = {
