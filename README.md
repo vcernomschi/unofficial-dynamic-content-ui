@@ -10,7 +10,7 @@
 
 ## Installation
 
-Using npm:
+Using yarn:
 
 ``` sh
 yarn add unofficial-dynamic-content-ui
