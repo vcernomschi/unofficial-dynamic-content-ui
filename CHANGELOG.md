@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.6.0](https://github.com/techiedarren/unofficial-dynamic-content-ui/compare/v0.5.1...v0.6.0) (2022-01-12)
+
+
+### Features
+
+* handle fields with type boolean ([5c918b8](https://github.com/techiedarren/unofficial-dynamic-content-ui/commit/5c918b89f685be3336723b65f70627787e4ce09a))
+* support default values ([ae8c907](https://github.com/techiedarren/unofficial-dynamic-content-ui/commit/ae8c9071f4dd004a318869ce17771aa9a97a4bcd))
+* support for number, list of text and list of dropdowns ([77a0a51](https://github.com/techiedarren/unofficial-dynamic-content-ui/commit/77a0a51a7f54a7c36cd71faf053c17d060aeaa44))
+* support multiline text when over 1000 characters ([f6769d5](https://github.com/techiedarren/unofficial-dynamic-content-ui/commit/f6769d55bd30a1e69d067cdaea86dc0275550976))
+* temporary prepare build script ([5908aff](https://github.com/techiedarren/unofficial-dynamic-content-ui/commit/5908aff4f81bc7e31e528136764ccad94945c617))
+
+
+### Bug Fixes
+
+* Missing import in storybook story ([4c2babf](https://github.com/techiedarren/unofficial-dynamic-content-ui/commit/4c2babf40f17dee7bb782bacfc79c5e70c9d73f4))
+
 ### [0.5.1](https://github.com/techiedarren/unofficial-dynamic-content-ui/compare/v0.5.0...v0.5.1) (2021-06-02)
 
 
