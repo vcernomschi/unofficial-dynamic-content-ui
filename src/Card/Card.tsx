@@ -1,6 +1,6 @@
 import React, { PropsWithChildren } from "react";
 
-import { withStyles, WithStyles } from "@material-ui/core";
+import { withStyles, WithStyles, IconButton } from "@material-ui/core";
 import clsx from "clsx";
 
 export const styles = {
