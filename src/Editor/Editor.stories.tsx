@@ -1,6 +1,7 @@
 import { storiesOf } from "@storybook/react";
 import React from "react";
 import { Editor } from "..";
+import { Modal, Backdrop, DialogContent } from "@material-ui/core";
 
 const stringSchema = {
   type: "string",
@@ -11,6 +12,45 @@ const schema = {
   title: "title",
   description: "description",
   type: "boolean"
+};
+
+const schema2 = {
+  type: "object",
+  properties: {
+    "1": {
+      title: "Color level 1",
+      type: "string",
+      format: "color"
+    },
+    "2": {
+      title: "Level 2",
+      type: "object",
+      properties: {
+        "2-1": {
+          title: "Color level 1",
+          type: "string",
+          format: "color"
+        },
+        "2-2": {
+          title: "Color level 2",
+          type: "string",
+          format: "color"
+        },
+        "2-3": {
+          title: "Level 3",
+          type: "object",
+          properties: {
+            "2-3-1": {
+              title: "Color",
+              type: "string",
+              format: "color"
+            }
+          }
+        }
+      },
+      required: ["2-1"]
+    }
+  }
 };
 
 const schema1 = {
@@ -509,5 +549,32 @@ const registry = {
 };
 
 storiesOf("Editor", module)
-  .add("Component", () => <Editor schema={schema} />)
-  .add("TEST", () => <Editor schema={schema1} value={value} />);
+  .add("Component", () => <Editor schema={schema}/>)
+  .add("On Modal", () =>
+    <Modal
+      closeAfterTransition={true}
+      BackdropComponent={Backdrop}
+      BackdropProps={{
+        timeout: 500
+      }}
+      open={true}
+      style={{
+        width: "90%",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        margin: "0 auto"
+      }}
+    >
+      <DialogContent
+        style={{
+          padding: 10,
+          overflow: "auto",
+          maxHeight: 300,
+          backgroundColor: "#f2f2f2",
+        }}
+      >
+        <Editor schema={schema2}/>
+      </DialogContent>
+    </Modal>)
+  .add("TEST", () => <Editor schema={schema1} value={value}/>);
