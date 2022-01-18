@@ -94,7 +94,7 @@ const EditorColorField: React.SFC<EditorColorFieldProps> = (
             PaperProps={{
               className: "mui-paper-color"
             }}
-            marginThreshold={100}
+            marginThreshold={0}
           >
             <ChromePicker
               color={localValue}
