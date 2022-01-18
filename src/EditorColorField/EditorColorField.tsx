@@ -2,14 +2,21 @@ import React, { useState } from "react";
 
 import {
   FormControl,
-  FormHelperText,
+  FormHelperText, Popover, TextField as MuiTextField,
   withStyles,
   WithStyles
 } from "@material-ui/core";
-import clsx from "clsx";
-import ColorPicker from "material-ui-color-picker";
 import { getErrorMessages, getErrorsForPointer } from "../EditorErrorMessages";
 import { WithEditorFieldProps } from "../EditorField";
+import { ChromePicker } from "react-color";
+import PopupState, { bindTrigger, bindPopover } from "material-ui-popup-state";
+
+export const DEFAULT_CONVERTER = "rgba_hex";
+export const converters = {
+  rgba: (c: any) => `rgba(${c.rgb.r}, ${c.rgb.g}, ${c.rgb.b}, ${c.rgb.a})`,
+  hex: (c: any) => c.hex,
+  rgba_hex: (c: any) => c.rgb.a === 1 ? converters.hex(c) : converters.rgba(c)
+};
 
 export const styles = {
   root: {
@@ -21,7 +28,8 @@ export const styles = {
 };
 
 export interface EditorColorFieldProps
-  extends WithEditorFieldProps<WithStyles<typeof styles>> {}
+  extends WithEditorFieldProps<WithStyles<typeof styles>> {
+}
 
 const EditorColorField: React.SFC<EditorColorFieldProps> = (
   props: EditorColorFieldProps
@@ -57,30 +65,52 @@ const EditorColorField: React.SFC<EditorColorFieldProps> = (
 
   const errors = getErrorsForPointer(pointer, errorReport);
   const errorMessages = getErrorMessages(schema, errors, registry);
-
   return (
-    <FormControl className={classes.root}>
-      <ColorPicker
-        name="color"
-        defaultValue={localValue}
-        value={localValue}
-        autoComplete="off"
-        label={schema.title || ""}
-        disabled={disabled}
-        required={required}
-        inputProps={{
-          readOnly: readonly,
-          "aria-label": schema.description || "",
-          value: localValue || "",
-          className: clsx(classes.input)
-        }}
-        error={errorMessages.length > 0}
-        onChange={handleChange}
-      />
-      <FormHelperText error={errorMessages.length > 0}>
-        {errorMessages.length ? errorMessages[0] : schema.description}
-      </FormHelperText>
-    </FormControl>
+    <PopupState variant="popover" popupId="color-popup-popover">
+      {(popupState: any) => (
+        <FormControl id={"color-popup"} className={classes.root}>
+          <MuiTextField
+            autoComplete="off"
+            label={schema.title || ""}
+            disabled={disabled}
+            required={required}
+            onChange={handleChange}
+            defaultValue={schema.default || localValue}
+            inputProps={{
+              readOnly: readonly,
+              "aria-label": schema.description || ""
+            }}
+            error={errorMessages.length > 0}
+            value={localValue}
+            {...bindTrigger(popupState)}
+          />
+
+          <Popover
+            {...bindPopover(popupState)}
+            anchorOrigin={{
+              vertical: "bottom",
+              horizontal: "left"
+            }}
+            PaperProps={{
+              className: "mui-paper-color"
+            }}
+            marginThreshold={100}
+          >
+            <ChromePicker
+              color={localValue}
+              onChange={(c: any) => {
+                const newValue = converters[DEFAULT_CONVERTER](c);
+
+                handleChange(newValue);
+              }}
+            />
+          </Popover>
+          <FormHelperText error={errorMessages.length > 0}>
+            {errorMessages.length ? errorMessages[0] : schema.description}
+          </FormHelperText>
+        </FormControl>
+      )}
+    </PopupState>
   );
 };
 
