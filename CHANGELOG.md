@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.7.0](https://github.com/techiedarren/unofficial-dynamic-content-ui/compare/v0.6.0...v0.7.0) (2022-01-25)
+
+
+### Bug Fixes
+
+* fix Popover initial margin ([346d44e](https://github.com/techiedarren/unofficial-dynamic-content-ui/commit/346d44ed112350f0f66bdc37e70fd7afdb54dee5))
+* fix position of color picker using popover and direct react-color library ([338a709](https://github.com/techiedarren/unofficial-dynamic-content-ui/commit/338a7098ad4048628e716a4811483c9cf7fa23c9))
+
 ## [0.6.0](https://github.com/techiedarren/unofficial-dynamic-content-ui/compare/v0.5.1...v0.6.0) (2022-01-12)
 
 
