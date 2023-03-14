@@ -147,7 +147,7 @@ export const EditorContentLinkField: React.SFC<EditorContentLinkFieldProps> = (
     handleFetchContentJson();
   }
 
-  if (hasValue) {
+  if (hasValue && localValue) {
     const contentTypeSettings = getExtensionParams(
       sdk && sdk.field ? sdk.field.schema : {},
       {}
