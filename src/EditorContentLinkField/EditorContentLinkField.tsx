@@ -143,7 +143,7 @@ export const EditorContentLinkField: React.SFC<EditorContentLinkFieldProps> = (
     }
   }, [localValue, setLoadedContentItemId, setContentItemJson]);
 
-  if (hasValue && localValue.id && localValue.id !== loadedContentItemId) {
+  if (hasValue && localValue?.id && localValue?.id !== loadedContentItemId) {
     handleFetchContentJson();
   }
 
