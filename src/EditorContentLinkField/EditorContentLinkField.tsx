@@ -88,6 +88,15 @@ export const EditorContentLinkField: React.SFC<EditorContentLinkFieldProps> = (
     } catch {}
   }, [onChange, sdk]);
 
+  React.useEffect(
+    () => {
+      if (value) {
+        setValue(value);
+      }
+    },
+    [value]
+  );
+
   const handleDelete = React.useCallback(
     event => {
       if (onChange) {
